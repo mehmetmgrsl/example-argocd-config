@@ -3,17 +3,16 @@ kind: Ingress
 metadata:
   name: bookapp-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /    
+    nginx.ingress.kubernetes.io/rewrite-target: /   
 spec:
-  ingressClassName: nginx-example
   rules:
-  - host: bookapp.net
-  - http:
+  - host: "bookapp.net"
+    http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
             name: bookapp-service
             port:
-              number: 9898
+              number: 9898            

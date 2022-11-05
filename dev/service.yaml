@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: bookapp-service
 spec:
-  type: NodePort
   selector:
     app: bookapp
   ports:
     - port: 9898
       protocol: TCP
       targetPort: 8080
-      nodePort: 32323

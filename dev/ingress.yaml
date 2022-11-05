@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bookapp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /    
+spec:
+  ingressClassName: nginx-example
+  rules:
+  - host: bookapp.net
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bookapp-service
+            port:
+              number: 9898

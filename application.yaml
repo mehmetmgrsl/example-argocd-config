@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: example-book-argocd-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/mehmetmgrsl/example-argocd-config.git
+    targetRevision: master
+    path: dev
+  destination:
+    server: https://kubernetes.default.svc  #instead of server: <endpoint of K8S's appi server> you can use -> name: <cluster-name>
+    namespace: ns-book
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true

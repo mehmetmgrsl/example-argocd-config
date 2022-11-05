@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookapp
+spec:
+  selector:
+    matchLabels:
+      app: bookapp
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: bookapp
+    spec:
+      containers:
+        - name: bookapp
+          image: mgrsl/example-book-app:v1.3.0
+          ports:
+            - containerPort: 8080
